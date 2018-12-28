@@ -26,7 +26,7 @@ class EventFactory
 
     public function createFromArray(array $data): Event
     {
-        foreach (['uuid', 'name', 'category', 'description', 'address', 'begin_at', 'finish_at', 'capacity'] as $key) {
+        foreach (['uuid', 'name', 'category', 'description', 'address', 'begin_at', 'finish_at', 'capacity', 'time_zone'] as $key) {
             if (empty($data[$key])) {
                 throw new \InvalidArgumentException(sprintf('Key "%s" is missing or has an empty value.', $key));
             }
@@ -45,7 +45,13 @@ class EventFactory
             $data['begin_at'],
             $data['finish_at'],
             $data['capacity'],
-            $data['is_for_legislatives'] ?? false
+            $data['is_for_legislatives'] ?? false,
+            null,
+            0,
+            null,
+            null,
+            [],
+            $data['time_zone']
         );
 
         $this->referentTagManager->assignReferentLocalTags($event);
@@ -55,7 +61,7 @@ class EventFactory
 
     public function createCitizenActionFromArray(array $data): CitizenAction
     {
-        foreach (['uuid', 'organizer', 'citizen_project', 'name', 'category', 'description', 'address', 'begin_at', 'finish_at'] as $key) {
+        foreach (['uuid', 'organizer', 'citizen_project', 'name', 'category', 'description', 'address', 'begin_at', 'finish_at', 'time_zone'] as $key) {
             if (!array_key_exists($key, $data)) {
                 throw new \InvalidArgumentException(sprintf('Key "%s" is missing.', $key));
             }
@@ -72,7 +78,9 @@ class EventFactory
             $data['description'],
             $data['address'],
             $data['begin_at'],
-            $data['finish_at']
+            $data['finish_at'],
+            0,
+            $data['time_zone']
         );
     }
 
@@ -91,6 +99,7 @@ class EventFactory
             $command->getCapacity(),
             $command->isForLegislatives()
         );
+        $event->setTimeZone($command->getTimeZone());
 
         $this->referentTagManager->assignReferentLocalTags($event);
 
@@ -104,6 +113,7 @@ class EventFactory
             $command->getCategory(),
             $command->getDescription(),
             $this->createPostAddress($command->getAddress()),
+            $command->getTimeZone(),
             $command->getBeginAt()->format(\DATE_ATOM),
             $command->getFinishAt()->format(\DATE_ATOM),
             $command->getCapacity(),
@@ -126,7 +136,9 @@ class EventFactory
             $command->getDescription(),
             $this->createPostAddress($command->getAddress()),
             $command->getBeginAt(),
-            $command->getFinishAt()
+            $command->getFinishAt(),
+            0,
+            $command->getTimeZone()
         );
     }
 
@@ -138,7 +150,8 @@ class EventFactory
             $command->getDescription(),
             $this->createPostAddress($command->getAddress()),
             $command->getBeginAt(),
-            $command->getFinishAt()
+            $command->getFinishAt(),
+            $command->getTimeZone()
         );
     }
 

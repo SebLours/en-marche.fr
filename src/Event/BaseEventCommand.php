@@ -40,6 +40,11 @@ class BaseEventCommand
     /**
      * @Assert\NotBlank
      */
+    private $timeZone;
+
+    /**
+     * @Assert\NotBlank
+     */
     private $beginAt;
 
     /**
@@ -60,17 +65,20 @@ class BaseEventCommand
         Address $address = null,
         \DateTimeInterface $beginAt = null,
         \DateTimeInterface $finishAt = null,
-        BaseEvent $event = null
+        BaseEvent $event = null,
+        string $timeZone = 'Europe/Paris'
     ) {
         $this->uuid = $uuid ?: Uuid::uuid4();
         $this->author = $author;
         $this->address = $address ?: new Address();
         $this->beginAt = $beginAt;
         $this->finishAt = $finishAt;
+        $this->timeZone = $timeZone;
 
         if ($event) {
             $this->name = $event->getName();
             $this->description = $event->getDescription();
+            $this->timeZone = $event->getTimeZone();
         }
     }
 
@@ -148,6 +156,16 @@ class BaseEventCommand
     public function getUuid(): UuidInterface
     {
         return $this->uuid;
+    }
+
+    public function getTimeZone(): ?string
+    {
+        return $this->timeZone;
+    }
+
+    public function setTimeZone(string $timeZone): void
+    {
+        $this->timeZone = $timeZone;
     }
 
     protected function getCategoryClass(): string

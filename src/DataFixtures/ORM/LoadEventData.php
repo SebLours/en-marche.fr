@@ -94,6 +94,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('+3 days'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('+3 days'))->format('Y-m-d').' 19:00:00',
             'capacity' => 10,
+            'time_zone' => 'Europe/Paris',
         ]);
         $eventHidden->setPublished(true);
 
@@ -109,6 +110,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'finish_at' => (new Chronos('+3 days'))->format('Y-m-d').' 19:00:00',
             'capacity' => 50,
             'is_for_legislatives' => true,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event1->incrementParticipantsCount();
 
@@ -123,6 +125,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('+10 days'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('+10 days'))->format('Y-m-d').' 19:00:00',
             'capacity' => 50,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event2->incrementParticipantsCount();
         $event2->incrementParticipantsCount();
@@ -138,6 +141,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('tomorrow'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('tomorrow'))->format('Y-m-d').' 19:00:00',
             'capacity' => 50,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event3->incrementParticipantsCount();
 
@@ -152,6 +156,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('+15 days'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('+15 days'))->format('Y-m-d').' 19:00:00',
             'capacity' => 50,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event4->incrementParticipantsCount();
 
@@ -166,6 +171,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('+17 days'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('+17 days'))->format('Y-m-d').' 19:00:00',
             'capacity' => 1,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event5->incrementParticipantsCount();
 
@@ -180,6 +186,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('+60 days'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('+60 days'))->format('Y-m-d').' 19:00:00',
             'capacity' => 50,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event6->cancel();
         $event6->incrementParticipantsCount();
@@ -195,6 +202,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => '2017-02-20 09:30:00',
             'finish_at' => '2017-02-20 19:30:00',
             'capacity' => 2000,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event7->incrementParticipantsCount();
 
@@ -209,6 +217,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => '2017-02-20 09:30:00',
             'finish_at' => '2017-02-20 19:00:00',
             'capacity' => 2000,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event8->incrementParticipantsCount();
 
@@ -223,6 +232,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => '2017-03-07 12:30:00',
             'finish_at' => '2017-03-07 17:30:00',
             'capacity' => 20,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event9->incrementParticipantsCount();
 
@@ -237,6 +247,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('yesterday'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('yesterday'))->format('Y-m-d').' 19:00:00',
             'capacity' => 100,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event10->incrementParticipantsCount();
 
@@ -251,6 +262,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('now', new \DateTimeZone('Asia/Singapore')))->modify('-4 hours')->format('Y-m-d H:00:00'),
             'finish_at' => (new Chronos('now', new \DateTimeZone('Asia/Singapore')))->modify('-2 hours')->format('Y-m-d H:00:00'),
             'capacity' => 100,
+            'time_zone' => 'Asia/Singapore',
         ]);
         $event11->incrementParticipantsCount(2);
 
@@ -265,6 +277,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('now', new \DateTimeZone('America/New_York')))->modify('+10 hours')->format('Y-m-d H:00:00'),
             'finish_at' => (new Chronos('now', new \DateTimeZone('America/New_York')))->modify('+13 hours')->format('Y-m-d H:00:00'),
             'capacity' => 55,
+            'time_zone' => 'America/New_York',
         ]);
         $event12->incrementParticipantsCount(2);
 
@@ -279,6 +292,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('now', new \DateTimeZone('America/New_York')))->modify('+10 hours')->format('Y-m-d H:00:00'),
             'finish_at' => (new Chronos('now', new \DateTimeZone('America/New_York')))->modify('+13 hours')->format('Y-m-d H:00:00'),
             'capacity' => 55,
+            'time_zone' => 'America/New_York',
         ]);
         $event13->setPublished(false);
 
@@ -293,6 +307,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('now', new \DateTimeZone('America/New_York')))->modify('+10 hours')->format('Y-m-d H:00:00'),
             'finish_at' => (new Chronos('now', new \DateTimeZone('America/New_York')))->modify('+13 hours')->format('Y-m-d H:00:00'),
             'capacity' => 55,
+            'time_zone' => 'America/New_York',
         ]);
         $event14->setPublished(true);
 
@@ -307,6 +322,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('yesterday'))->format('Y-m-d').' 10:00:00',
             'finish_at' => (new Chronos('yesterday'))->format('Y-m-d').' 18:00:00',
             'capacity' => 5,
+            'time_zone' => 'Europe/Zurich',
         ]);
         $event15->setPublished(true);
 
@@ -320,6 +336,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('now'))->format('Y-m-d H:00:00'),
             'finish_at' => (new Chronos('now'))->format('Y-m-d').' 18:00:00',
             'capacity' => 15,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event16->setPublished(true);
 
@@ -334,6 +351,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('-3 days'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('-3 days'))->format('Y-m-d').' 19:00:00',
             'capacity' => 100,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event17->setPublished(true);
 
@@ -348,6 +366,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('-10 days'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('-10 days'))->format('Y-m-d').' 19:00:00',
             'capacity' => 100,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event18->setPublished(true);
 
@@ -362,6 +381,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('-1 month'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('-1 month'))->format('Y-m-d').' 19:00:00',
             'capacity' => 50,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event19->setPublished(true);
 
@@ -376,6 +396,7 @@ class LoadEventData implements FixtureInterface, ContainerAwareInterface, Depend
             'begin_at' => (new Chronos('-1 month'))->format('Y-m-d').' 09:30:00',
             'finish_at' => (new Chronos('-1 month'))->format('Y-m-d').' 19:00:00',
             'capacity' => 50,
+            'time_zone' => 'Europe/Paris',
         ]);
         $event20->setPublished(true);
 

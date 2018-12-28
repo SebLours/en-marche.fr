@@ -37,7 +37,8 @@ class CitizenAction extends BaseEvent
         PostAddress $address,
         \DateTimeInterface $beginAt,
         \DateTimeInterface $finishAt,
-        int $participantsCount = 0
+        int $participantsCount = 0,
+        string $timeZone = 'Europe/Paris'
     ) {
         $this->uuid = $uuid;
         $this->organizer = $organizer;
@@ -51,6 +52,7 @@ class CitizenAction extends BaseEvent
         $this->beginAt = $beginAt instanceof \DateTimeImmutable ? new \DateTime($beginAt->format(\DATE_ATOM)) : $beginAt;
         $this->finishAt = $finishAt;
         $this->status = self::STATUS_SCHEDULED;
+        $this->timeZone = $timeZone;
     }
 
     public function __toString(): string
@@ -64,14 +66,15 @@ class CitizenAction extends BaseEvent
         string $description,
         PostAddress $address,
         \DateTimeInterface $beginAt,
-        \DateTimeInterface $finishAt
+        \DateTimeInterface $finishAt,
+        string $timeZone
     ) {
         $this->setName($name);
         $this->category = $category;
         $this->beginAt = $beginAt;
         $this->finishAt = $finishAt;
         $this->description = $description;
-
+        $this->timeZone = $timeZone;
         if (!$this->postAddress->equals($address)) {
             $this->postAddress = $address;
         }

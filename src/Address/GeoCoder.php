@@ -29,4 +29,17 @@ class GeoCoder
 
         return null;
     }
+
+    public function getTimezoneFromIp(string $ip): string
+    {
+        try {
+            return  $this->provider->city($ip)->location->timeZone ?? 'Europe/Paris';
+        } catch (GeoIp2Exception $e) {
+            $this->logger->warning(sprintf('[GeoIP2] Unable to locate IP [%s]: %s', $ip, $e->getMessage()), [
+                'stack_trace' => $e->getTraceAsString(),
+            ]);
+        }
+
+        return 'Europe/Paris';
+    }
 }

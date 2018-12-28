@@ -85,6 +85,12 @@
                         {{ form_label(form.address.country, 'Pays') }}
                         {{ form_widget(form.address.country, { attr: { class: 'form--full', placeholder: 'Choisissez le pays' } }) }}
                     </div>
+
+                    <div class="form__row committee_event__form__timezone" id="committee-event-timezone-field">
+                        {{ form_errors(form.timezone) }}
+                        {{ form_label(form.timezone, 'Fuseau horaire') }}
+                        {{ form_widget(form.timezone, { attr: { class: 'form--full', placeholder: 'Choisissez le fuseau horaire' } }) }}
+                    </div>
                 </div>
             </div>
 

@@ -82,7 +82,8 @@ class Event extends BaseEvent implements UserDocumentInterface, SynchronizedEnti
         int $participantsCount = 0,
         string $slug = null,
         string $type = null,
-        array $referentTags = []
+        array $referentTags = [],
+        string $timeZone = 'Europe/Paris'
     ) {
         $this->uuid = $uuid;
         $this->organizer = $organizer;
@@ -103,6 +104,7 @@ class Event extends BaseEvent implements UserDocumentInterface, SynchronizedEnti
         $this->type = $type;
         $this->documents = new ArrayCollection();
         $this->referentTags = new ArrayCollection($referentTags);
+        $this->timeZone = $timeZone;
     }
 
     public function __toString(): string
@@ -115,6 +117,7 @@ class Event extends BaseEvent implements UserDocumentInterface, SynchronizedEnti
         EventCategory $category,
         string $description,
         PostAddress $address,
+        string $timeZone,
         string $beginAt,
         string $finishAt,
         int $capacity = null,
@@ -123,6 +126,7 @@ class Event extends BaseEvent implements UserDocumentInterface, SynchronizedEnti
         $this->setName($name);
         $this->category = $category;
         $this->capacity = $capacity;
+        $this->timeZone = $timeZone;
         $this->beginAt = new \DateTime($beginAt);
         $this->finishAt = new \DateTime($finishAt);
         $this->description = $description;

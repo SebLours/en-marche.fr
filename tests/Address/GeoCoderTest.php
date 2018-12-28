@@ -43,4 +43,35 @@ class GeoCoderTest extends TestCase
 
         static::assertNull($geocoder->getCountryCodeFromIp('123.123.123.123'));
     }
+
+    public function testLocationTimeZoneIsReturnedWhenIpHasBeenLocated()
+    {
+        $providerMock = $this->createMock(ProviderInterface::class);
+        $providerMock->expects($this->once())
+            ->method('city')
+            ->with('123.123.123.123')
+            ->willReturn(json_decode(json_encode(['location' => ['timeZone' => 'Europe/Paris']])))
+        ;
+
+        $geocoder = new GeoCoder($providerMock, $this->createMock(LoggerInterface::class));
+
+        static::assertSame('Europe/Paris', $geocoder->getTimezoneFromIp('123.123.123.123'));
+    }
+
+    public function testLogWarningIfCanNotLocateIpAddressForGetTimeZone()
+    {
+        $providerMock = $this->createMock(ProviderInterface::class);
+        $providerMock->expects($this->once())
+            ->method('city')
+            ->with('123.123.123.123')
+            ->willThrowException(new GeoIp2Exception('geoip2 error'))
+        ;
+
+        $loggerProvider = $this->createMock(LoggerInterface::class);
+        $loggerProvider->expects($this->once())->method('warning')->with('[GeoIP2] Unable to locate IP [123.123.123.123]: geoip2 error');
+
+        $geocoder = new GeoCoder($providerMock, $loggerProvider);
+
+        static::assertSame('Europe/Paris', $geocoder->getTimezoneFromIp('123.123.123.123'));
+    }
 }

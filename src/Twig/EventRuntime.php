@@ -24,4 +24,17 @@ class EventRuntime
 
         return (bool) $this->eventRegistrationRepository->findGuestRegistration($event->getUuid(), $user->getEmailAddress());
     }
+
+    public function offsetTimeZone(string $timeZone = 'Europe/Paris'): string
+    {
+        if ('Europe/Paris' !== $timeZone) {
+            $datetime = new \DateTime('now');
+            $tz = new \DateTimeZone($timeZone);
+            $datetime->setTimezone($tz);
+
+            return 'UTC '.$datetime->format('P');
+        }
+
+        return '';
+    }
 }

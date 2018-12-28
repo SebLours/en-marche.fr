@@ -22,6 +22,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 
 class EventAdmin extends AbstractAdmin
 {
@@ -65,61 +66,64 @@ class EventAdmin extends AbstractAdmin
     {
         $showMapper
             ->with('Événement', ['class' => 'col-md-7'])
-                ->add('name', null, [
-                    'label' => 'Nom',
-                    'format_title_case' => true,
-                ])
-                ->add('category', null, [
-                    'label' => 'Catégorie',
-                ])
-                ->add('committee', null, [
-                    'label' => 'Comité organisateur',
-                ])
-                ->add('description', null, [
-                    'label' => 'Description',
-                    'attr' => [
-                        'rows' => '3',
-                    ],
-                ])
-                ->add('beginAt', null, [
-                    'label' => 'Date de début',
-                ])
-                ->add('finishAt', null, [
-                    'label' => 'Date de fin',
-                ])
-                ->add('createdAt', null, [
-                    'label' => 'Date de création',
-                ])
-                ->add('participantsCount', null, [
-                    'label' => 'Nombre de participants',
-                ])
-                ->add('status', 'trans', [
-                    'label' => 'Statut',
-                    'catalogue' => 'forms',
-                ])
-                ->add('published', null, [
-                    'label' => 'Publié',
-                ])
+            ->add('name', null, [
+                'label' => 'Nom',
+                'format_title_case' => true,
+            ])
+            ->add('category', null, [
+                'label' => 'Catégorie',
+            ])
+            ->add('committee', null, [
+                'label' => 'Comité organisateur',
+            ])
+            ->add('description', null, [
+                'label' => 'Description',
+                'attr' => [
+                    'rows' => '3',
+                ],
+            ])
+            ->add('beginAt', null, [
+                'label' => 'Date de début',
+            ])
+            ->add('finishAt', null, [
+                'label' => 'Date de fin',
+            ])
+            ->add('createdAt', null, [
+                'label' => 'Date de création',
+            ])
+            ->add('participantsCount', null, [
+                'label' => 'Nombre de participants',
+            ])
+            ->add('status', 'trans', [
+                'label' => 'Statut',
+                'catalogue' => 'forms',
+            ])
+            ->add('published', null, [
+                'label' => 'Publié',
+            ])
             ->end()
             ->with('Adresse', ['class' => 'col-md-5'])
-                ->add('postAddress.address', TextType::class, [
-                    'label' => 'Rue',
-                ])
-                ->add('postAddress.postalCode', TextType::class, [
-                    'label' => 'Code postal',
-                ])
-                ->add('postAddress.cityName', TextType::class, [
-                    'label' => 'Ville',
-                ])
-                ->add('postAddress.country', UnitedNationsCountryType::class, [
-                    'label' => 'Pays',
-                ])
-                ->add('postAddress.latitude', TextType::class, [
-                    'label' => 'Latitude',
-                ])
-                ->add('postAddress.longitude', TextType::class, [
-                    'label' => 'Longitude',
-                ])
+            ->add('postAddress.address', TextType::class, [
+                'label' => 'Rue',
+            ])
+            ->add('postAddress.postalCode', TextType::class, [
+                'label' => 'Code postal',
+            ])
+            ->add('postAddress.cityName', TextType::class, [
+                'label' => 'Ville',
+            ])
+            ->add('postAddress.country', UnitedNationsCountryType::class, [
+                'label' => 'Pays',
+            ])
+            ->add('postAddress.latitude', TextType::class, [
+                'label' => 'Latitude',
+            ])
+            ->add('postAddress.longitude', TextType::class, [
+                'label' => 'Longitude',
+            ])
+            ->add('timeZone', TimezoneType::class, [
+                'label' => 'Time zone',
+            ])
             ->end()
         ;
     }
@@ -137,56 +141,61 @@ class EventAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Événement', ['class' => 'col-md-7'])
-                ->add('name', null, [
-                    'label' => 'Nom',
-                ])
-                ->add('category', EventCategoryType::class, [
-                    'label' => 'Catégorie',
-                ])
-                ->add('committee', null, [
-                    'label' => 'Comité organisateur',
-                ])
-                ->add('description', null, [
-                    'label' => 'Description',
-                    'attr' => [
-                        'rows' => '3',
-                    ],
-                ])
-                ->add('beginAt', null, [
-                    'label' => 'Date de début',
-                ])
-                ->add('finishAt', null, [
-                    'label' => 'Date de fin',
-                ])
-                ->add('status', ChoiceType::class, [
-                    'label' => 'Statut',
-                    'choices' => Event::STATUSES,
-                    'choice_translation_domain' => 'forms',
-                    'choice_label' => function (?string $choice) { return $choice; },
-                ])
-                ->add('published', null, [
-                    'label' => 'Publié',
-                ])
+            ->add('name', null, [
+                'label' => 'Nom',
+            ])
+            ->add('category', EventCategoryType::class, [
+                'label' => 'Catégorie',
+            ])
+            ->add('committee', null, [
+                'label' => 'Comité organisateur',
+            ])
+            ->add('description', null, [
+                'label' => 'Description',
+                'attr' => [
+                    'rows' => '3',
+                ],
+            ])
+            ->add('beginAt', null, [
+                'label' => 'Date de début',
+            ])
+            ->add('finishAt', null, [
+                'label' => 'Date de fin',
+            ])
+            ->add('status', ChoiceType::class, [
+                'label' => 'Statut',
+                'choices' => Event::STATUSES,
+                'choice_translation_domain' => 'forms',
+                'choice_label' => function (?string $choice) {
+                    return $choice;
+                },
+            ])
+            ->add('published', null, [
+                'label' => 'Publié',
+            ])
             ->end()
             ->with('Adresse', ['class' => 'col-md-5'])
-                ->add('postAddress.address', TextType::class, [
-                    'label' => 'Rue',
-                ])
-                ->add('postAddress.postalCode', TextType::class, [
-                    'label' => 'Code postal',
-                ])
-                ->add('postAddress.cityName', TextType::class, [
-                    'label' => 'Ville',
-                ])
-                ->add('postAddress.country', UnitedNationsCountryType::class, [
-                    'label' => 'Pays',
-                ])
-                ->add('postAddress.latitude', TextType::class, [
-                    'label' => 'Latitude',
-                ])
-                ->add('postAddress.longitude', TextType::class, [
-                    'label' => 'Longitude',
-                ])
+            ->add('postAddress.address', TextType::class, [
+                'label' => 'Rue',
+            ])
+            ->add('postAddress.postalCode', TextType::class, [
+                'label' => 'Code postal',
+            ])
+            ->add('postAddress.cityName', TextType::class, [
+                'label' => 'Ville',
+            ])
+            ->add('postAddress.country', UnitedNationsCountryType::class, [
+                'label' => 'Pays',
+            ])
+            ->add('postAddress.latitude', TextType::class, [
+                'label' => 'Latitude',
+            ])
+            ->add('postAddress.longitude', TextType::class, [
+                'label' => 'Longitude',
+            ])
+            ->add('timeZone', TimezoneType::class, [
+                'label' => 'Time zone',
+            ])
             ->end()
         ;
     }

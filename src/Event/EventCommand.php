@@ -44,9 +44,10 @@ class EventCommand extends BaseEventCommand
         \DateTimeInterface $beginAt = null,
         \DateTimeInterface $finishAt = null,
         bool $isForLegislatives = false,
-        Event $event = null
+        Event $event = null,
+        string $timezone = 'Europe/Paris'
     ) {
-        parent::__construct($author, $uuid, $address, $beginAt, $finishAt, $event);
+        parent::__construct($author, $uuid, $address, $beginAt, $finishAt, $event, $timezone);
 
         $this->committee = $committee;
         $this->isForLegislatives = $isForLegislatives;
@@ -62,7 +63,8 @@ class EventCommand extends BaseEventCommand
             $event->getBeginAt(),
             $event->getFinishAt(),
             $event->isForLegislatives(),
-            $event
+            $event,
+            $event->getTimeZone()
         );
 
         $command->category = $event->getCategory();
