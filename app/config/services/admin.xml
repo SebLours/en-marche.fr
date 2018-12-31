@@ -727,6 +727,20 @@
             </call>
         </service>
 
+        <service id="app.admin.ideas_workshop_guideline" class="AppBundle\Admin\IdeasWorkshopGuidelineAdmin">
+            <tag name="sonata.admin" manager-type="orm" label="Trame de la note (sections)" group="Atelier des idées" />
+            <argument />
+            <argument>AppBundle\Entity\IdeasWorkshop\Guideline</argument>
+            <argument />
+        </service>
+
+        <service id="app.admin.ideas_workshop_question" class="AppBundle\Admin\IdeasWorkshopQuestionAdmin">
+            <tag name="sonata.admin" manager-type="orm" label="Trame de la note (questions)" group="Atelier des idées" />
+            <argument />
+            <argument>AppBundle\Entity\IdeasWorkshop\Question</argument>
+            <argument />
+        </service>
+
         <!--
         ######################################################
         # OAuth

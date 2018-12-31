@@ -85,6 +85,15 @@ class LoadIdeaQuestionData extends AbstractFixture implements DependentFixtureIn
         $this->addReference('question-gender-equality', $questionGenderEquality);
         $guidelineImplementation->addQuestion($questionGenderEquality);
 
+        $questionDisabled = new Question(
+            'Masquée',
+            'Elle n\'est pas affichée.',
+            9,
+            false,
+            false
+        );
+        $guidelineImplementation->addQuestion($questionDisabled);
+
         $manager->persist($questionProblem);
         $manager->persist($questionAnswer);
         $manager->persist($questionCompare);
@@ -93,6 +102,7 @@ class LoadIdeaQuestionData extends AbstractFixture implements DependentFixtureIn
         $manager->persist($questionBudgetImpact);
         $manager->persist($questionEcologyImpact);
         $manager->persist($questionGenderEquality);
+        $manager->persist($questionDisabled);
 
         $manager->flush();
     }
