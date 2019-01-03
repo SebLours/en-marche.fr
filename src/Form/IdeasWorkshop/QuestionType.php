@@ -24,6 +24,10 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('category', TextType::class, [
+                'label' => 'Titre de question',
+                'filter_emojis' => true,
+            ])
             ->add('name', TextType::class, [
                 'label' => 'Titre de question',
                 'filter_emojis' => true,

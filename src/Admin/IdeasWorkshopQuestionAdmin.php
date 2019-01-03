@@ -28,6 +28,9 @@ class IdeasWorkshopQuestionAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
+            ->add('category', null, [
+                'label' => 'Catégorie',
+            ])
             ->add('name', null, [
                 'label' => 'Nom',
             ])
@@ -43,9 +46,11 @@ class IdeasWorkshopQuestionAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('category', null, [
+                'label' => 'Catégorie',
+            ])
             ->add('name', null, [
                 'label' => 'Nom',
-                'format_title_case' => true,
             ])
             ->add('guideline', null, [
                 'label' => 'Guideline',
@@ -62,6 +67,10 @@ class IdeasWorkshopQuestionAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('category', null, [
+                'label' => 'Catégorie',
+                'show_filter' => true,
+            ])
             ->add('name', null, [
                 'label' => 'Nom',
                 'show_filter' => true,
@@ -72,6 +81,9 @@ class IdeasWorkshopQuestionAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('category', null, [
+                'label' => 'Catégorie',
+            ])
             ->add('name', null, [
                 'label' => 'Nom',
             ])

@@ -135,9 +135,6 @@
         <prototype namespace="AppBundle\EntityListener\" resource="../../../src/EntityListener/">
             <tag name="doctrine.orm.entity_listener" />
         </prototype>
-        <service id="AppBundle\EventListener\FilterConfiguratorListener">
-            <tag name="kernel.event_listener" event="kernel.controller" />
-        </service>
 
         <!-- Exporter -->
         <prototype namespace="AppBundle\Exporter\" resource="../../../src/Exporter/" />

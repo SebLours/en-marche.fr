@@ -829,6 +829,15 @@
             <tag name="sonata.admin.extension" target="app.admin.adherent" />
         </service>
 
+        <service id="app.admin.filter_configuration_extension" class="AppBundle\Admin\Extension\FilterConfigurationAdminExtension">
+            <tag name="sonata.admin.extension" target="app.admin.ideas_workshop_consultation" />
+            <tag name="sonata.admin.extension" target="app.admin.ideas_workshop_category" />
+            <tag name="sonata.admin.extension" target="app.admin.ideas_workshop_need" />
+            <tag name="sonata.admin.extension" target="app.admin.ideas_workshop_theme" />
+            <tag name="sonata.admin.extension" target="app.admin.ideas_workshop_guideline" />
+            <tag name="sonata.admin.extension" target="app.admin.ideas_workshop_question" />
+        </service>
+
         <!--
         ######################################################
         # Menu

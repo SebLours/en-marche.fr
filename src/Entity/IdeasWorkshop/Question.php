@@ -67,6 +67,13 @@ class Question implements EnabledInterface
      *
      * @SymfonySerializer\Groups("guideline_read")
      */
+    private $category;
+
+    /**
+     * @ORM\Column
+     *
+     * @SymfonySerializer\Groups("guideline_read")
+     */
     private $name;
 
     /**
@@ -84,12 +91,14 @@ class Question implements EnabledInterface
     private $enabled;
 
     public function __construct(
+        string $category = '',
         string $name = '',
         string $placeholder = '',
         int $position = 0,
         bool $required = false,
         bool $enabled = true
     ) {
+        $this->category = $category;
         $this->name = $name;
         $this->position = $position;
         $this->placeholder = $placeholder;
@@ -130,6 +139,16 @@ class Question implements EnabledInterface
     public function setPosition(int $position): void
     {
         $this->position = $position;
+    }
+
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): void
+    {
+        $this->category = $category;
     }
 
     public function getName(): string
