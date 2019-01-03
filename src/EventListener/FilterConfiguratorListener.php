@@ -2,6 +2,7 @@
 
 namespace AppBundle\EventListener;
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Controller\CoreController;
 use Sonata\AdminBundle\Controller\CRUDController;
@@ -10,6 +11,11 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 class FilterConfiguratorListener
 {
+    /**
+     * @var EntityManager
+     */
+    private $em;
+
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
